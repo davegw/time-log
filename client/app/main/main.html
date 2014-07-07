@@ -12,13 +12,17 @@
       <div>{{data.log[0].date}}</div>
       <form ng-submit="updateAllActivity()" ng-model="data.log[0]">
         <button type="submit">Update All</button>
-      </form>  
+      </form> 
+      <select ng-model= "groupSelect" ng-options="option for option in data.categories"></select>
       <table class="table">
         <tr ng-repeat="timeSection in data.log[0].entry">
           <td>{{timeConverter(timeSection.time)}}</td>
           <td>
-            <div ng-show="!showInput" ng-click="showInput = true">
-              {{timeSection.activity}}
+            <div ng-show="!showInput">
+              <div ng-click="showInput = true">
+                {{timeSection.activity}}
+              </div>
+              <input type="checkbox" ng-model="timeSection.groupChange"> </input>
             </div>
             <form ng-submit="updateActivity()" ng-show="showInput">
               <select ng-model="timeSection.activity" ng-options="option for option in data.categories"></select>
