@@ -6,7 +6,8 @@ angular.module('timeLogApp', [
   'ngSanitize',
   'ui.bootstrap',
   'ui.router',
-  'time-log.factories'
+  'time-log.factories',
+  'angularCharts'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
