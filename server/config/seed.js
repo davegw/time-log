@@ -49,22 +49,22 @@ User.find({}).remove(function() {
   );
 });
 
-Log.find({}).remove(function() {
-  Log.create({
-    name: 'Test Dave',
-    log: [{
-      date: new Date('01.21.2014'),
-      entry: (function() {
-              var array = [];
-              for (var i = 0; i < 24; i++) {
-                var defaultTime = { time: i, activity: 'None' };
-                array.push(defaultTime);
-              }
-              return array;
-            })()
-    }]
-  }, function() {
-      console.log('finished populating log');
-    }
-  );
-});
+// Log.find({}).remove(function() {
+//   Log.create({
+//     name: 'Test Dave',
+//     log: [{
+//       date: new Date('01.21.2014'),
+//       entry: (function() {
+//               var array = [];
+//               for (var i = 0; i < 24; i++) {
+//                 var defaultTime = { time: i, activity: 'None' };
+//                 array.push(defaultTime);
+//               }
+//               return array;
+//             })()
+//     }]
+//   }, function() {
+//       console.log('finished populating log');
+//     }
+//   );
+// });
