@@ -17,7 +17,11 @@ var entrySchema = new Schema({
 
 var LogSchema = new Schema({
   name: String,
-  log: [entrySchema]
+  log: [entrySchema],
+  categories: {
+    type: [String],
+    default: ['Sleep', 'Reading', 'Work', 'Exercise']
+  }
 });
 
 entrySchema.newDay = function() {
