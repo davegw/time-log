@@ -9,7 +9,9 @@
   </div>
   <div class="row">
     <div class="col-lg-6">
-      <div>{{data.log[0].date}}</div>
+
+      <div>{{data.log[0].date | date:'MMMM dd, yyyy'}}</div>
+      <div>{{data.log[0].date + 1 | date:'MMMM dd, yyyy'}}</div>
       <form ng-submit="updateAllActivity()" ng-model="data.log[0]">
         <button type="submit">Update All</button>
       </form> 

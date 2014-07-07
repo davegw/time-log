@@ -52,22 +52,4 @@ LogSchema.newEntry = function() {
   });
 }
 
-// var LogSchema = new Schema({
-//   name: String,
-//   email: { type: String, lowercase: true },
-//   role: {
-//     type: String,
-//     default: 'user'
-//   },
-
-//   log: {
-//     date: ,
-//     activities: {
-//       [time: ,
-//        activity: ]
-//     }
-//   }
-// });
-
-
 module.exports = mongoose.model('Log', LogSchema);

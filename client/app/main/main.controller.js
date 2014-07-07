@@ -30,6 +30,7 @@ angular.module('timeLogApp')
         $scope.data = data[0];
         console.log(($scope.data.log[0]));
         $scope.getChartData();
+        Logs.createBlankEntry($scope.data._id, new Date('01.22.2014'));
       });
     };
 
@@ -78,4 +79,5 @@ angular.module('timeLogApp')
     }
 
     $scope.loadActivity();
+
   });
