@@ -20,13 +20,17 @@
             <div ng-show="!showInput" ng-click="showInput = true">
               {{timeSection.activity}}
             </div>
-            <form ng-submit="addActivity()" ng-show="showInput">
+            <form ng-submit="updateActivity()" ng-show="showInput">
               <input placeholder="{{timeSection.activity}}" ng-model="timeSection.activity"></input>
               <button type="submit">Update</button>
             </form>
           </td>
         </tr>  
       </table>
+    </div>
+    <div class="col-lg-6">
+      <select ng-model="chart.type" ng-options="option.value as option.name for option in chart.typeOptions"></select>
+      <div data-ac-chart="chart.type" data-ac-data="chart.data" data-ac-config="chart.config" class="chart"></div>
     </div>
   </div>
 </div>
