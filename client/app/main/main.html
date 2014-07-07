@@ -15,14 +15,13 @@
       </form>  
       <table class="table">
         <tr ng-repeat="timeSection in data.log[0].entry">
-          <td>{{timeSection.time % 12 + ":00"}}</td>
+          <td>{{timeConverter(timeSection.time)}}</td>
           <td>
             <div ng-show="!showInput" ng-click="showInput = true">
               {{timeSection.activity}}
             </div>
             <form ng-submit="updateActivity()" ng-show="showInput">
-              <input placeholder="{{timeSection.activity}}" ng-model="timeSection.activity"></input>
-              <button type="submit">Update</button>
+              <select ng-model="timeSection.activity" ng-options="option for option in data.categories"></select>
             </form>
           </td>
         </tr>  

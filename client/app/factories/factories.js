@@ -40,7 +40,20 @@ angular.module('time-log.factories', [])
         }
         return activityCount;
       });
+  };
+
+
+  return logInstance;
+})
+
+.service('LogService', function () {
+  var logInstance = {};
+
+  logInstance.printTime = function(number) {
+    var ampm = number < 12 ? 'am' : 'pm'
+    var hour = number % 12 === 0 ? 12 : number % 12;
+    return (hour + ":00 " + ampm);
   }
 
   return logInstance;
-});
+})

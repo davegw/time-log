@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('timeLogApp')
-  .controller('MainCtrl', function ($scope, $http, Logs) {
+  .controller('MainCtrl', function ($scope, $http, Logs, LogService) {
     $scope.data = {};
     $scope.chart = {};
     $scope.chart.data = {};
@@ -64,6 +64,10 @@ angular.module('timeLogApp')
           }
         });
     };
+
+    $scope.timeConverter = function(number) {
+      return LogService.printTime(number);
+    }
 
     $scope.loadActivity();
   });
