@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Log = require('../api/log/log.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -44,6 +45,26 @@ User.find({}).remove(function() {
     password: 'admin'
   }, function() {
       console.log('finished populating users');
+    }
+  );
+});
+
+Log.find({}).remove(function() {
+  Log.create({
+    name: 'Test Dave',
+    log: [{
+      date: new Date('01.21.2014'),
+      entry: (function() {
+              var array = [];
+              for (var i = 0; i < 24; i++) {
+                var defaultTime = { time: i, activity: 'None' };
+                array.push(defaultTime);
+              }
+              return array;
+            })()
+    }]
+  }, function() {
+      console.log('finished populating log');
     }
   );
 });
