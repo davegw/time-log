@@ -72,3 +72,30 @@ td {
 .table-hover > tbody > tr.selected:hover > td {
   background: #535993;
 }
+
+.index-heading {
+  margin: 30px 0 5px 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.index-subheading {
+  margin: 0px;
+  color: #323875;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.index-list-heading {
+  margin: 30px 0 5px 0;
+  font-weight: normal;
+}
+
+.index-list {
+  font-size: 18px;
+}
+
+.index-button {
+  margin: 5px 10px;
+  font-size: 20px;
+}

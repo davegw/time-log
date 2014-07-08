@@ -6,8 +6,6 @@ angular.module('timeLogApp')
     $scope.log = {};
     $scope.groupSelect = 'N/A';
     $scope.logDate = {};
-    $scope.logDate.prev = {};
-    $scope.logDate.next = {};
 
     // Run everytime main controller is called.
     $scope.runController = function() {
@@ -27,15 +25,8 @@ angular.module('timeLogApp')
             });
           $scope.logDate.prev = moment($scope.log.date).subtract('days', 1).toISOString();
           $scope.logDate.next = moment($scope.log.date).add('days', 1).toISOString();
-          // Logs.findByDate($scope.data._id, new Date('04.04.2014')).then(function(f) {console.log('f,', f)})
         });
     };
-
-    // $scope.updateActivity = function() {
-    //   console.log($scope.data.log[0].entry);
-    //   this.showInput = false;
-    //   $http.put('/api/logs/' + $scope.data._id, {data: $scope.data.log[0].entry})
-    // };
 
     $scope.updateAllActivity = function() {
       for (var i = 0; i < $scope.log.entry.length; i++) {
