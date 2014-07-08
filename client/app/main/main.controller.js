@@ -74,7 +74,6 @@ angular.module('timeLogApp')
       {name: 'Line Graph', value: 'line'}
     ];
     $scope.chart.config = {
-      title: 'Time Log',
       tooltips: true,
       labels: false,
       mouseover: function() {},
@@ -103,5 +102,11 @@ angular.module('timeLogApp')
 
     // Run everytime main controller is called.
     $scope.runController();
+
+    $(function() {
+      $('table').click(function() {
+        console.log(this);
+      });
+    })
 
   });

@@ -1,33 +1,44 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <header class="hero-unit" id="banner">
-  Time Log
+  <div class="row date-nav-container">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-2 date-nav">
+      <a href="#" ng-click="createNewEntry(logDate.prev)" class="nav-link"><span class="glyphicon glyphicon-chevron-left"></span> {{logDate.prev | date:'MMM dd'}}</a>
+    </div>
+    <div class="col-lg-4 date-nav"><strong>{{data.log[0].date | date:'MMMM dd, yyyy'}}</strong></div>
+    <div class="col-lg-2 date-nav">
+      <a href="#" ng-click="createNewEntry(logDate.next)" class="nav-link">{{logDate.next | date:'MMM dd'}} <span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
 </header>
 
 <div class="container">
   <div class="row">
-  </div>
-  <div class="row">
     <div class="col-lg-6">
-
-      <div><a href="#" ng-click="createNewEntry(logDate.prev)">{{logDate.prev | date:'MMM dd'}}</a></div>
-      <div>{{data.log[0].date | date:'MMMM dd, yyyy'}}</div>
-      <div><a href="#" ng-click="createNewEntry(logDate.next)">{{logDate.next | date:'MMM dd'}}</a></div>
-      <form ng-submit="updateAllActivity()" ng-model="data.log[0]">
-        <button type="submit">Update All</button>
-      </form> 
-      <select ng-model= "groupSelect" ng-options="option for option in data.categories"></select>
-      <table class="table">
+      <div class="row options-row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-5">
+          <select ng-model= "groupSelect" ng-options="option for option in data.categories"  class="form-control"></select>
+        </div>
+        <div class="col-lg-4">
+          <form ng-submit="updateAllActivity()" ng-model="data.log[0]">
+            <button type="submit" class="btn btn-primary pull-right">Update All</button>
+          </form>
+        </div>
+      </div>
+      <table class="table table-hover">
         <tr ng-repeat="timeSection in data.log[0].entry">
-          <td>{{timeConverter(timeSection.time)}}</td>
-          <td>
+          <td class="col-lg-3">{{timeConverter(timeSection.time)}}</td>
+          <td class="col-lg-9">
             <div ng-show="!showInput">
-              <div ng-click="showInput = true">
+              <div ng-click="showInput = true" class="pull-left">
                 {{timeSection.activity}}
               </div>
-              <input type="checkbox" ng-model="timeSection.groupChange"> </input>
+              <input type="checkbox" class="pull-right checkbox" ng-model="timeSection.groupChange"> </input>
             </div>
-            <form ng-submit="updateActivity()" ng-show="showInput">
+            <form ng-submit="updateActivity()" ng-show="showInput" class="activity-column">
               <select ng-model="timeSection.activity" ng-options="option for option in data.categories"></select>
             </form>
           </td>
@@ -35,7 +46,12 @@
       </table>
     </div>
     <div class="col-lg-6">
-      <select ng-model="chart.type" ng-options="option.value as option.name for option in chart.typeOptions"></select>
+      <div class="row options-row">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4">
+          <select ng-model="chart.type" ng-options="option.value as option.name for option in chart.typeOptions" class="form-control"></select>
+        </div>
+      </div>
       <div data-ac-chart="chart.type" data-ac-data="chart.data" data-ac-config="chart.config" class="chart"></div>
     </div>
   </div>
@@ -43,7 +59,6 @@
 
 <footer class="footer">
   <div class="container">
-      <p><a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+      Time Log
   </div>
 </footer>
