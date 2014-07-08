@@ -49,16 +49,16 @@ var Log = require('../api/log/log.model');
 //   );
 // });
 
-User.find({}).remove(function(err, logs) {
-  var user = new User({name: 'Dave'});
-  user.save(function(err, userLog) {
-    var log = new Log({date: new Date('10.10.2010'), _user: userLog._id});
-    log.save();  
-  })
-  // console.log(user);
-  // var log = new Log({date: new Date('10.10.2010'), _user: user._id});
-  // log.save();
-});
+// User.find({}).remove(function(err, logs) {
+//   var user = new User({name: 'Dave'});
+//   user.save(function(err, userLog) {
+//     var log = new Log({date: new Date('10.10.2010'), _user: userLog._id});
+//     log.save();  
+//   })
+//   // console.log(user);
+//   // var log = new Log({date: new Date('10.10.2010'), _user: user._id});
+//   // log.save();
+// });
 
 // Log.find({_user: '53bc20cdd89c637baf602719'}).exec(function(err, log) {
 //   console.log(log);

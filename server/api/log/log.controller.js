@@ -56,24 +56,33 @@ exports.show = function(req, res) {
 //   });
 // };
 
-// exports.createNewEntry = function(req, res) {
-//   entryExist(req.body.id, req.body.date)
-//     .then(function(found){
-//       if (found) {
-//         console.log('nope');
-//         return res.json(202, found);
-//       }
-//       Log.findById(req.body.id, function (err, log) {
-//         var updated = log;
-//         updated.log.push({date: req.body.date});
-//         console.log(updated.log,'------------------------');
-//         updated.save(function(err, log) {
-//           if(err) { console.log("ERROR",err);return handleError(res, err); }
-//           return res.json(201, log);
-//         });
-//       });
-//     });
-// };
+exports.createNewEntry = function(req, res) {
+  entryExist(req.body.id, req.body.date)
+    .then(function(found){
+      console.log(found);
+      if (found.length > 0) {
+        console.log('nope');
+        return res.json(202, found);
+      }
+      var log = new Log({
+        _user: req.body.id, 
+        date: req.body.date
+      });
+      log.save(function(err, log) {
+        if(err) { console.log("ERROR",err);return handleError(res, err); }
+        return res.json(201, log);
+      });
+      // Log.findById(req.body.id, function (err, log) {
+      //   var updated = log;
+      //   updated.log.push({date: req.body.date});
+      //   console.log(updated.log,'------------------------');
+      //   updated.save(function(err, log) {
+      //     if(err) { console.log("ERROR",err);return handleError(res, err); }
+      //     return res.json(201, log);
+      //   });
+      // });
+    });
+};
 
 // Updates an existing log in the DB.
 // exports.update = function(req, res) {
@@ -109,11 +118,14 @@ function handleError(res, err) {
   return res.send(500, err);
 }
 
-// function entryExist(id, date) {
-//   return Log.findById(id)
-//     .where('log.date')
-//     .equals(date)
-//     .exec(function (err, log) {
-//       return log;
-//     });
-// }
+function entryExist(id, date) {
+  return Log
+    .where('_user')
+    .equals(id)
+    .where('date')
+    .equals(date)
+    .exec(function (err, log) {
+      if(err) { return handleError(res, err); }
+      return log;
+    });
+}

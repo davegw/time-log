@@ -16,7 +16,7 @@ angular.module('timeLogApp')
     }
 
     $scope.loadActivity = function() {
-      $http.get('/api/logs/53bc3109cc2cdd62b01b67a8')
+      $http.get('/api/logs/53bc3690f0bb00adb076ca1b')
         .success(function(data) {
           $scope.log = data;
           console.log($scope.log);
@@ -52,12 +52,12 @@ angular.module('timeLogApp')
     //     });
     // };
 
-    // $scope.createNewEntry = function(date) {
-    //   console.log('hey')
-    //   Logs.createBlankEntry($scope.data._id, date).then(function(response) {
-    //     console.log(response);
-    //   });
-    // }
+    $scope.createNewEntry = function(date) {
+      console.log(date)
+      Logs.createBlankEntry($scope.user._id, date).then(function(response) {
+        console.log(response);
+      });
+    }
 
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);
