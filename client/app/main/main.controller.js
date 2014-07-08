@@ -38,19 +38,19 @@ angular.module('timeLogApp')
     //   $http.put('/api/logs/' + $scope.data._id, {data: $scope.data.log[0].entry})
     // };
 
-    // $scope.updateAllActivity = function() {
-    //   for (var i = 0; i < $scope.data.log[0].entry.length; i++) {
-    //     if ($scope.data.log[0].entry[i].groupChange === true) {
-    //       $scope.data.log[0].entry[i].activity = $scope.groupSelect;
-    //       delete $scope.data.log[0].entry[i].groupChange;
-    //       console.log($scope.data.log[0].entry[i]);
-    //     }
-    //   }
-    //   $http.put('/api/logs/' + $scope.data._id, {data: $scope.data.log[0].entry})
-    //     .success(function() {
-    //       $scope.loadActivity();
-    //     });
-    // };
+    $scope.updateAllActivity = function() {
+      for (var i = 0; i < $scope.log.entry.length; i++) {
+        if ($scope.log.entry[i].groupChange === true) {
+          $scope.log.entry[i].activity = $scope.groupSelect;
+          delete $scope.log.entry[i].groupChange;
+          console.log($scope.log.entry[i]);
+        }
+      }
+      $http.put('/api/logs/' + $scope.log._id, {data: $scope.log.entry})
+        .success(function() {
+          $scope.loadActivity();
+        });
+    };
 
     $scope.createNewEntry = function(date) {
       console.log(date)

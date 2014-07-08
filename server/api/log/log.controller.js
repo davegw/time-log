@@ -72,35 +72,21 @@ exports.createNewEntry = function(req, res) {
         if(err) { console.log("ERROR",err);return handleError(res, err); }
         return res.json(201, log);
       });
-      // Log.findById(req.body.id, function (err, log) {
-      //   var updated = log;
-      //   updated.log.push({date: req.body.date});
-      //   console.log(updated.log,'------------------------');
-      //   updated.save(function(err, log) {
-      //     if(err) { console.log("ERROR",err);return handleError(res, err); }
-      //     return res.json(201, log);
-      //   });
-      // });
     });
 };
 
 // Updates an existing log in the DB.
-// exports.update = function(req, res) {
-//   if(req.body._id) { delete req.body._id; }
-//   Log.findById(req.params.id, function (err, log) {
-//     if (err) { return handleError(err); }
-//     if(!log) { return res.send(404); }
-//     var updated = log;
-//     updated.log[0].entry = req.body.data;
-//     console.log("test: ",updated.log[0].entry);
-//     console.log("update: ",updated.log[0].entry);
-//     console.log("req: ",req.body);
-//     updated.save(function (err) {
-//       if (err) { return handleError(err); }
-//       return res.json(200, log);
-//     });
-//   });
-// };
+exports.update = function(req, res) {
+  Log.findById(req.params.id, function (err, updateLog) {
+    if (err) { return handleError(err); }
+    if(!updateLog) { return res.send(404); }
+    updateLog.entry = req.body.data;
+    updateLog.save(function (err, log) {
+      if (err) { return handleError(err); }
+      return res.json(200, log);
+    });
+  });
+};
 
 // Deletes a log from the DB.
 exports.destroy = function(req, res) {
