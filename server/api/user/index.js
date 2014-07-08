@@ -12,6 +12,7 @@ var router = express.Router();
 // router.get('/me', auth.isAuthenticated(), controller.me);
 // router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', controller.show);
+router.get('/name/:id', controller.findName);
 // router.post('/', controller.create);
 
 module.exports = router;

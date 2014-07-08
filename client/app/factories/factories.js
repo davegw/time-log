@@ -39,7 +39,7 @@ angular.module('time-log.factories', [])
   logInstance.count = function(id){
     return this.find(id)
       .then(function(result) {
-        var logs = result.data.log[0].entry;
+        var logs = result.data.entry;
         var activityCount = {};
         for (var i = 0; i < logs.length; i++) {
           if (activityCount[logs[i].activity] === undefined) {

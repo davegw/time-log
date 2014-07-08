@@ -47,6 +47,17 @@ exports.show = function (req, res, next) {
   });
 };
 
+exports.findName = function (req, res, next) {
+  var userName = req.params.id;
+
+  User.findOne({name: userName}, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.send(401);
+    console.log('user ', user)
+    res.json(user);
+  });
+};
+
 /**
  * Deletes a user
  * restriction: 'admin'

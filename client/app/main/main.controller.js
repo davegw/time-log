@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('timeLogApp')
-  .controller('MainCtrl', function ($scope, $http, Logs, LogService) {
+  .controller('MainCtrl', function ($scope, $http, Logs, LogService, $stateParams) {
     $scope.user = {};
     $scope.log = {};
     $scope.groupSelect = 'N/A';
@@ -12,23 +12,22 @@ angular.module('timeLogApp')
     // Run everytime main controller is called.
     $scope.runController = function() {
       $scope.loadActivity();
-      
+      console.log('params ',$stateParams);
     }
 
     $scope.loadActivity = function() {
-      $http.get('/api/logs/53bc3690f0bb00adb076ca1b')
+      $http.get('/api/logs/' + $stateParams.log_id)
         .success(function(data) {
           $scope.log = data;
           console.log($scope.log);
           $http.get('/api/users/' + $scope.log._user)
             .success(function(userData) {
               $scope.user = userData;
+              $scope.getChartData();
             });
-          // $scope.getChartData();
           $scope.logDate.prev = moment($scope.log.date).subtract('days', 1).toISOString();
           $scope.logDate.next = moment($scope.log.date).add('days', 1).toISOString();
           // Logs.findByDate($scope.data._id, new Date('04.04.2014')).then(function(f) {console.log('f,', f)})
-          // $scope.createNewEntry(new Date('04.04.2014'));
         });
     };
 
@@ -71,40 +70,40 @@ angular.module('timeLogApp')
     /*****************************************
      ***************** CHART *****************
      *****************************************/
-    // $scope.chart = {};
-    // $scope.chart.data = {};
-    // $scope.chart.type = 'pie';
-    // $scope.chart.typeOptions = [
-    //   {name: 'Pie Chart', value: 'pie'},
-    //   {name: 'Bar Graph', value: 'bar'},
-    //   {name: 'Line Graph', value: 'line'}
-    // ];
-    // $scope.chart.config = {
-    //   tooltips: true,
-    //   labels: false,
-    //   mouseover: function() {},
-    //   mouseout: function() {},
-    //   click: function() {},
-    //   legend: {
-    //     display: true,
-    //     position: 'right'
-    //   }
-    // };
+    $scope.chart = {};
+    $scope.chart.data = {};
+    $scope.chart.type = 'pie';
+    $scope.chart.typeOptions = [
+      {name: 'Pie Chart', value: 'pie'},
+      {name: 'Bar Graph', value: 'bar'},
+      {name: 'Line Graph', value: 'line'}
+    ];
+    $scope.chart.config = {
+      tooltips: true,
+      labels: false,
+      mouseover: function() {},
+      mouseout: function() {},
+      click: function() {},
+      legend: {
+        display: true,
+        position: 'right'
+      }
+    };
 
-    // $scope.getChartData = function() {
-    //   Logs.count($scope.data._id)
-    //     .then(function(response) {
-    //       $scope.chart.data.data = [];
-    //       $scope.chart.data.series = ['Time'];
-    //       for (var activity in response) {
-    //         $scope.chart.data.data.push({
-    //           x: activity, 
-    //           y: [response[activity]], 
-    //           tooltip: (activity + ': ' + response[activity] + ' hr')
-    //         });
-    //       }
-    //     });
-    // };
+    $scope.getChartData = function() {
+      Logs.count($scope.log._id)
+        .then(function(response) {
+          $scope.chart.data.data = [];
+          $scope.chart.data.series = ['Time'];
+          for (var activity in response) {
+            $scope.chart.data.data.push({
+              x: activity, 
+              y: [response[activity]], 
+              tooltip: (activity + ': ' + response[activity] + ' hr')
+            });
+          }
+        });
+    };
 
     // Run everytime main controller is called.
     $scope.runController();

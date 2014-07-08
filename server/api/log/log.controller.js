@@ -32,6 +32,19 @@ exports.show = function(req, res) {
   });
 };
 
+
+exports.showUserLogs = function(req, res) {
+  // Log.findById(req.params.id, function (err, log) {
+  //   if(err) { return handleError(res, err); }
+  //   if(!log) { return res.send(404); }
+  //   return res.json(log);
+  // });
+
+  Log.find({_user: req.params.id}, function(err, log) {
+    return res.json(log);
+  })
+};
+
 // exports.showDateEntry = function(req, res) {
 //   Log.findById(req.params.user_id, function (err, log) {
 //     if(err) { return handleError(res, err); }
