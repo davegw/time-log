@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var User = require('../user/user.model');
 
 var timeSchema = new Schema({
   time: Number,
@@ -11,8 +12,9 @@ var timeSchema = new Schema({
   }
 })
 
-var entrySchema = new Schema({
+var LogSchema = new Schema({
   date: Date,
+  _user: {type: Schema.Types.ObjectId, ref: 'User'},
   entry: {
     type: [timeSchema],
     default: [
@@ -24,34 +26,42 @@ var entrySchema = new Schema({
   }
 });
 
-var LogSchema = new Schema({
-  name: String,
-  log: [entrySchema],
-  categories: {
-    type: [String],
-    default: ['Sleep', 'Reading', 'Work', 'Exercise', 'N/A']
-  }
-});
+// var LogSchema = new Schema({
+//   date: Date,
+//   entry: [{
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: 'Entry'
+//   }]
+// });
 
-entrySchema.newDay = function() {
-  var newDay = [];
-  for (var i = 0; i < 24; i++) {
-    var newTime = new timeSchema({time: i, activity: 'none'});
-    newDay.push(newTime);
-  }
-  return newDay;
-}
+// var LogSchema = new Schema({
+//   name: String,
+//   log: [entrySchema],
+//   categories: {
+//     type: [String],
+//     default: ['Sleep', 'Reading', 'Work', 'Exercise', 'N/A']
+//   }
+// });
 
-LogSchema.newEntry = function() {
-  LogSchema.create({
-    name: 'Test Dave2',
-    log: [{
-      date: 'Today',
-      entry: entrySchema.newDay()
-    }]
-  });
-}
+// entrySchema.newDay = function() {
+//   var newDay = [];
+//   for (var i = 0; i < 24; i++) {
+//     var newTime = new timeSchema({time: i, activity: 'none'});
+//     newDay.push(newTime);
+//   }
+//   return newDay;
+// }
+
+// LogSchema.newEntry = function() {
+//   LogSchema.create({
+//     name: 'Test Dave2',
+//     log: [{
+//       date: 'Today',
+//       entry: entrySchema.newDay()
+//     }]
+//   });
+// }
 
 module.exports = mongoose.model('Log', LogSchema);
-module.exports.TimeModel = mongoose.model('Time', timeSchema);
-module.exports.EntryModel = mongoose.model('Entry', entrySchema);
+// module.exports.TimeModel = mongoose.model('Time', timeSchema);
+// module.exports.EntryModel = mongoose.model('Entry', entrySchema);

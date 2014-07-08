@@ -6,7 +6,7 @@
     <div class="col-lg-2 date-nav">
       <a href="#" ng-click="createNewEntry(logDate.prev)" class="nav-link"><span class="glyphicon glyphicon-chevron-left"></span> {{logDate.prev | date:'MMM dd'}}</a>
     </div>
-    <div class="col-lg-4 date-nav"><strong>{{data.log[0].date | date:'MMMM dd, yyyy'}}</strong></div>
+    <div class="col-lg-4 date-nav"><strong>{{log.date | date:'MMMM dd, yyyy'}}</strong></div>
     <div class="col-lg-2 date-nav">
       <a href="#" ng-click="createNewEntry(logDate.next)" class="nav-link">{{logDate.next | date:'MMM dd'}} <span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
@@ -20,7 +20,7 @@
       <div class="row options-row">
         <div class="col-lg-3"></div>
         <div class="col-lg-5">
-          <select ng-model= "groupSelect" ng-options="option for option in data.categories"  class="form-control"></select>
+          <select ng-model= "groupSelect" ng-options="option for option in user.categories"  class="form-control"></select>
         </div>
         <div class="col-lg-4">
           <form ng-submit="updateAllActivity()" ng-model="data.log[0]">
@@ -29,7 +29,7 @@
         </div>
       </div>
       <table class="table table-hover">
-        <tr ng-repeat="timeSection in data.log[0].entry" ng-class="{selected: timeSection.groupChange === true}">
+        <tr ng-repeat="timeSection in log.entry" ng-class="{selected: timeSection.groupChange === true}">
           <td class="col-lg-3">{{timeConverter(timeSection.time)}}</td>
           <td class="col-lg-9 activity-column" ng-click="timeSection.groupChange = !timeSection.groupChange">
             <div ng-show="!showInput">
@@ -39,7 +39,7 @@
               <input type="checkbox" class="pull-right checkbox" ng-model="timeSection.groupChange"> </input>
             </div>
             <form ng-submit="updateActivity()" ng-show="showInput" class="activity-column">
-              <select ng-model="timeSection.activity" ng-options="option for option in data.categories"></select>
+              <select ng-model="timeSection.activity" ng-options="option for option in user.categories"></select>
             </form>
           </td>
         </tr>  
