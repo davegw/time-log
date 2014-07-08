@@ -34,12 +34,6 @@ exports.show = function(req, res) {
 
 
 exports.showUserLogs = function(req, res) {
-  // Log.findById(req.params.id, function (err, log) {
-  //   if(err) { return handleError(res, err); }
-  //   if(!log) { return res.send(404); }
-  //   return res.json(log);
-  // });
-
   Log.find({_user: req.params.id}, function(err, log) {
     return res.json(log);
   })
@@ -72,17 +66,17 @@ exports.showUserLogs = function(req, res) {
 exports.createNewEntry = function(req, res) {
   entryExist(req.body.id, req.body.date)
     .then(function(found){
-      console.log(found);
       if (found.length > 0) {
         console.log('nope');
-        return res.json(202, found);
+        return res.json(202, found[0]);
       }
       var log = new Log({
         _user: req.body.id, 
         date: req.body.date
       });
       log.save(function(err, log) {
-        if(err) { console.log("ERROR",err);return handleError(res, err); }
+        if(err) { return handleError(res, err); }
+        console.log(log);
         return res.json(201, log);
       });
     });

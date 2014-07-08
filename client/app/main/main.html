@@ -4,11 +4,11 @@
   <div class="row date-nav-container">
     <div class="col-lg-2"></div>
     <div class="col-lg-2 date-nav">
-      <a href="#" ng-click="createNewEntry(logDate.prev)" class="nav-link"><span class="glyphicon glyphicon-chevron-left"></span> {{logDate.prev | date:'MMM dd'}}</a>
+      <a ng-click="createNewEntry(logDate.prev)" class="nav-link"><span class="glyphicon glyphicon-chevron-left"></span> {{logDate.prev | date:'MMM dd'}}</a>
     </div>
     <div class="col-lg-4 date-nav"><strong>{{log.date | date:'MMMM dd, yyyy'}}</strong></div>
     <div class="col-lg-2 date-nav">
-      <a href="#" ng-click="createNewEntry(logDate.next)" class="nav-link">{{logDate.next | date:'MMM dd'}} <span class="glyphicon glyphicon-chevron-right"></span></a>
+      <a ng-click="createNewEntry(logDate.next)" class="nav-link">{{logDate.next | date:'MMM dd'}} <span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
     <div class="col-lg-2"></div>
   </div>

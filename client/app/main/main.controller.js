@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('timeLogApp')
-  .controller('MainCtrl', function ($scope, $http, Logs, LogService, $stateParams) {
+  .controller('MainCtrl', function ($scope, $http, Logs, LogService, $stateParams, $location) {
     $scope.user = {};
     $scope.log = {};
     $scope.groupSelect = 'N/A';
@@ -55,6 +55,7 @@ angular.module('timeLogApp')
       console.log(date)
       Logs.createBlankEntry($scope.user._id, date).then(function(response) {
         console.log(response);
+        $location.path('/' + $scope.user.name + '/log/' + response.data._id)
       });
     }
 
