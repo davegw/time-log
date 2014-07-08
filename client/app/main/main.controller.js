@@ -47,6 +47,7 @@ angular.module('timeLogApp')
     };
 
     $scope.createNewEntry = function(date) {
+      console.log('hey')
       Logs.createBlankEntry($scope.data._id, date).then(function(response) {
         console.log(response);
       });
