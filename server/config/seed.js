@@ -49,14 +49,14 @@ User.find({}).remove(function() {
   );
 });
 
-Log.find({}).remove(function() {
-  Log.create({
-    name: 'Test Dave',
-    log: [{
-      date: new Date('01.21.2014')
-    }]
-  }, function() {
-      console.log('finished populating log');
-    }
-  );
-});
+// Log.find({}).remove(function() {
+//   Log.create({
+//     name: 'Test Dave',
+//     log: [{
+//       date: new Date('01.21.2012')
+//     }]
+//   }, function() {
+//       console.log('finished populating log');
+//     }
+//   );
+// });

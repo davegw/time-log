@@ -6,25 +6,17 @@ angular.module('time-log.factories', [])
 
   var logInstance = {};
 
-  // Create blank entry by finding the user's id then creating a new blank entry.
-  // If next is true the entry is added to end of array, otherwise it is added to beginning.
-  logInstance.createBlankEntry = function(id, date, next) {
-    console.log(id,date);
-    return this.find(id)
-      .then(function(result) {
-        console.log('safasf',result.data.log);
-        return $http({
-          method: 'POST',
-          url: '/api/entries/',
-          data: {
-            date: date
-          }
-        })
-        .then(function(response) {
-          // Determine where to add the blank entry.
-          next ? result.data.log.push(response.data) : result.data.log.unshift(response.data);;
-        });
-      });
+  // Create blank entry for the user collection. 
+  // If an entry at the date exists, no new entry is created.
+  logInstance.createBlankEntry = function(id, date) {
+    return $http({
+      method: 'POST',
+      url: '/api/logs/new-entry',
+      data: {
+        id: id,
+        date: date
+      }
+    });
   };
 
   // Finds a user's log given their ID.
@@ -35,12 +27,19 @@ angular.module('time-log.factories', [])
     });
   };
 
+  // Find an entry using the user ID and date.
+  // logInstance.findByDate = function(id, date) {
+  //   return $http({
+  //     method: 'GET',
+  //     url: '/api/logs/' + id + '/' + date
+  //   });
+  // }
+
   // Returns an object containing a key for each activity done and value for number of hours.
   logInstance.count = function(id){
     return this.find(id)
       .then(function(result) {
         var logs = result.data.log[0].entry;
-        console.log(logs.length);
         var activityCount = {};
         for (var i = 0; i < logs.length; i++) {
           if (activityCount[logs[i].activity] === undefined) {

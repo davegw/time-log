@@ -53,3 +53,5 @@ LogSchema.newEntry = function() {
 }
 
 module.exports = mongoose.model('Log', LogSchema);
+module.exports.TimeModel = mongoose.model('Time', timeSchema);
+module.exports.EntryModel = mongoose.model('Entry', entrySchema);

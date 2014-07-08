@@ -3,34 +3,26 @@
 angular.module('timeLogApp')
   .controller('MainCtrl', function ($scope, $http, Logs, LogService) {
     $scope.data = {};
-    $scope.groupSelect = 'N/A'
-    $scope.chart = {};
-    $scope.chart.data = {};
-    $scope.chart.typeOptions = [
-      {name: 'Pie Chart', value: 'pie'},
-      {name: 'Bar Graph', value: 'bar'},
-      {name: 'Line Graph', value: 'line'}
-    ];
-    $scope.chart.type = 'pie';
-    $scope.chart.config = {
-      title: 'Time Log',
-      tooltips: true,
-      labels: false,
-      mouseover: function() {},
-      mouseout: function() {},
-      click: function() {},
-      legend: {
-        display: true,
-        position: 'right'
-      }
-    };
+    $scope.groupSelect = 'N/A';
+    $scope.logDate = {};
+    $scope.logDate.prev = {};
+    $scope.logDate.next = {};
+
+    // Run everytime main controller is called.
+    $scope.runController = function() {
+      $scope.loadActivity();
+      
+    }
 
     $scope.loadActivity = function() {
       $http.get('/api/logs').success(function(data) {
         $scope.data = data[0];
         console.log(($scope.data.log[0]));
         $scope.getChartData();
-        Logs.createBlankEntry($scope.data._id, new Date('01.22.2014'));
+        $scope.logDate.prev = moment($scope.data.log[0].date).subtract('days', 1).toISOString();
+        $scope.logDate.next = moment($scope.data.log[0].date).add('days', 1).toISOString();
+        // Logs.findByDate($scope.data._id, new Date('04.04.2014')).then(function(f) {console.log('f,', f)})
+        // $scope.createNewEntry(new Date('04.04.2014'));
       });
     };
 
@@ -48,15 +40,49 @@ angular.module('timeLogApp')
           console.log($scope.data.log[0].entry[i]);
         }
       }
-
       $http.put('/api/logs/' + $scope.data._id, {data: $scope.data.log[0].entry})
         .success(function() {
           $scope.loadActivity();
         });
     };
 
+    $scope.createNewEntry = function(date) {
+      Logs.createBlankEntry($scope.data._id, date).then(function(response) {
+        console.log(response);
+      });
+    }
+
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);
+    };
+
+    $scope.timeConverter = function(number) {
+      return LogService.printTime(number);
+    }
+
+
+    /*****************************************
+     ***************** CHART *****************
+     *****************************************/
+    $scope.chart = {};
+    $scope.chart.data = {};
+    $scope.chart.type = 'pie';
+    $scope.chart.typeOptions = [
+      {name: 'Pie Chart', value: 'pie'},
+      {name: 'Bar Graph', value: 'bar'},
+      {name: 'Line Graph', value: 'line'}
+    ];
+    $scope.chart.config = {
+      title: 'Time Log',
+      tooltips: true,
+      labels: false,
+      mouseover: function() {},
+      mouseout: function() {},
+      click: function() {},
+      legend: {
+        display: true,
+        position: 'right'
+      }
     };
 
     $scope.getChartData = function() {
@@ -74,10 +100,7 @@ angular.module('timeLogApp')
         });
     };
 
-    $scope.timeConverter = function(number) {
-      return LogService.printTime(number);
-    }
-
-    $scope.loadActivity();
+    // Run everytime main controller is called.
+    $scope.runController();
 
   });
