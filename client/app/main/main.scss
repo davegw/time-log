@@ -38,13 +38,12 @@
   width: 100px;
 }
 
-.date-nav-container {
-  // margin: 20px 0;
-}
-
 .date-nav {
   text-align: center;
   font-size: 20px;
+  a:hover {
+    cursor: pointer;
+  }
 }
 
 a.nav-link {
@@ -56,14 +55,16 @@ a.nav-link {
 }
 
 td.activity-column {
-  &:hover {
-    cursor: pointer;
-  }
   .checkbox {
     display: none;
   }
 }
 
+td {
+  &:hover {
+    cursor: pointer;
+  }
+}
 .selected {
   background: #7D82B0;
 }

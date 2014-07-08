@@ -1,0 +1,28 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="row date-nav-container">
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+    </div>
+    <div class="col-lg-6">
+      <div class="row options-row">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4">
+          <select ng-model="chart.type" ng-options="option.value as option.name for option in chart.typeOptions" class="form-control"></select>
+        </div>
+      </div>
+      <div data-ac-chart="chart.type" data-ac-data="chart.data" data-ac-config="chart.config" class="chart"></div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+      Time Log
+  </div>
+</footer>

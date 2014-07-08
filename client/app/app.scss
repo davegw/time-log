@@ -22,8 +22,8 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     }
 }
 
-.navbar-header {
-  font-size: 50px;
+.navbar-brand.logo em {
+  font-size: 22px;
 }
 
 // Component styles are injected through grunt

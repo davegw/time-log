@@ -97,10 +97,13 @@ angular.module('timeLogApp')
           $scope.chart.data.data = [];
           $scope.chart.data.series = ['Time'];
           for (var activity in response) {
+            if (activity === "N/A") {
+              continue;
+            }
             $scope.chart.data.data.push({
               x: activity, 
               y: [response[activity]], 
-              tooltip: (activity + ': ' + response[activity] + ' hr')
+              tooltip: (activity + ': ' + response[activity] + 'hr')
             });
           }
         });

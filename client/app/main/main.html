@@ -4,11 +4,11 @@
   <div class="row date-nav-container">
     <div class="col-lg-2"></div>
     <div class="col-lg-2 date-nav">
-      <a ng-click="createNewEntry(logDate.prev)" class="nav-link"><span class="glyphicon glyphicon-chevron-left"></span> {{logDate.prev | date:'MMM dd'}}</a>
+      <a ng-click="createNewEntry(logDate.prev)" class="nav-link"><span class="glyphicon glyphicon-chevron-left"></span> {{logDate.prev | date:'MMM d'}}</a>
     </div>
-    <div class="col-lg-4 date-nav"><strong>{{log.date | date:'MMMM dd, yyyy'}}</strong></div>
+    <div class="col-lg-4 date-nav"><strong>{{log.date | date:'MMMM d, yyyy'}}</strong></div>
     <div class="col-lg-2 date-nav">
-      <a ng-click="createNewEntry(logDate.next)" class="nav-link">{{logDate.next | date:'MMM dd'}} <span class="glyphicon glyphicon-chevron-right"></span></a>
+      <a ng-click="createNewEntry(logDate.next)" class="nav-link">{{logDate.next | date:'MMM d'}} <span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
     <div class="col-lg-2"></div>
   </div>
@@ -20,7 +20,7 @@
       <div class="row options-row">
         <div class="col-lg-3"></div>
         <div class="col-lg-5">
-          <select ng-model= "groupSelect" ng-options="option for option in user.categories"  class="form-control"></select>
+          <select ng-model= "groupSelect" ng-options="option for option in user.categories" ng-change="updateAllActivity()" class="form-control"></select>
         </div>
         <div class="col-lg-4">
           <form ng-submit="updateAllActivity()" ng-model="data.log[0]">
