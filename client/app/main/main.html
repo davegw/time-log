@@ -10,8 +10,9 @@
   <div class="row">
     <div class="col-lg-6">
 
+      <div><a href="#" ng-click="prevDate">{{logDate.prev | date:'MMM dd'}}</a></div>
       <div>{{data.log[0].date | date:'MMMM dd, yyyy'}}</div>
-      <div>{{data.log[0].date + 1 | date:'MMMM dd, yyyy'}}</div>
+      <div><a href="#" ng-click="nextDate">{{logDate.next | date:'MMM dd'}}</a></div>
       <form ng-submit="updateAllActivity()" ng-model="data.log[0]">
         <button type="submit">Update All</button>
       </form> 
