@@ -29,9 +29,9 @@
         </div>
       </div>
       <table class="table table-hover">
-        <tr ng-repeat="timeSection in data.log[0].entry">
+        <tr ng-repeat="timeSection in data.log[0].entry" ng-class="{selected: timeSection.groupChange === true}">
           <td class="col-lg-3">{{timeConverter(timeSection.time)}}</td>
-          <td class="col-lg-9">
+          <td class="col-lg-9 activity-column" ng-click="timeSection.groupChange = !timeSection.groupChange">
             <div ng-show="!showInput">
               <div ng-click="showInput = true" class="pull-left">
                 {{timeSection.activity}}

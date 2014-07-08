@@ -54,3 +54,19 @@ a.nav-link {
 .options-row {
   margin: 20px 0 10px 0;
 }
+
+td.activity-column {
+  &:hover {
+    cursor: pointer;
+  }
+  .checkbox {
+    display: none;
+  }
+}
+
+.selected {
+  background: #7D82B0;
+}
+.table-hover > tbody > tr.selected:hover > td {
+  background: #535993;
+}

@@ -103,10 +103,4 @@ angular.module('timeLogApp')
     // Run everytime main controller is called.
     $scope.runController();
 
-    $(function() {
-      $('table').click(function() {
-        console.log(this);
-      });
-    })
-
   });
