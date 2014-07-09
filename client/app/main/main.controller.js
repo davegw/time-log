@@ -50,9 +50,9 @@ angular.module('timeLogApp')
       });
     }
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
+    $scope.indexPage = function() {
+      $location.path('/' + $scope.user.name);
+    }
 
     $scope.timeConverter = function(number) {
       return LogService.printTime(number);

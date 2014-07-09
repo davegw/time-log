@@ -50,9 +50,9 @@ var Log = require('../api/log/log.model');
 // });
 
 // User.find({}).remove(function(err, logs) {
-//   var user = new User({name: 'Dave'});
+//   var user = new User({name: 'DaveGW'});
 //   user.save(function(err, userLog) {
-//     var log = new Log({date: new Date('10.10.2010'), _user: userLog._id});
+//     var log = new Log({date: new Date('07.08.2014'), _user: userLog._id});
 //     log.save();  
 //   })
 //   // console.log(user);

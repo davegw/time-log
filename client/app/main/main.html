@@ -18,11 +18,15 @@
   <div class="row">
     <div class="col-lg-6">
       <div class="row options-row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-5">
+        <div class="col-lg-3">
+          <button class="btn btn-primary" ng-click="indexPage()">  
+            <span class="glyphicon glyphicon-arrow-left"></span>  Index
+          </button>
+        </div>
+        <div class="col-lg-6">
           <select ng-model= "groupSelect" ng-options="option for option in user.categories" ng-change="updateAllActivity()" class="form-control"></select>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <form ng-submit="updateAllActivity()" ng-model="data.log[0]">
             <button type="submit" class="btn btn-primary pull-right">Update All</button>
           </form>
@@ -32,15 +36,12 @@
         <tr ng-repeat="timeSection in log.entry" ng-class="{selected: timeSection.groupChange === true}">
           <td class="col-lg-3">{{timeConverter(timeSection.time)}}</td>
           <td class="col-lg-9 activity-column" ng-click="timeSection.groupChange = !timeSection.groupChange">
-            <div ng-show="!showInput">
+            <div>
               <div ng-click="showInput = true" class="pull-left">
                 {{timeSection.activity}}
               </div>
               <input type="checkbox" class="pull-right checkbox" ng-model="timeSection.groupChange"> </input>
             </div>
-            <form ng-submit="updateActivity()" ng-show="showInput" class="activity-column">
-              <select ng-model="timeSection.activity" ng-options="option for option in user.categories"></select>
-            </form>
           </td>
         </tr>  
       </table>
@@ -59,6 +60,6 @@
 
 <footer class="footer">
   <div class="container">
-      Time Log
+      <em>TimeLog</em><span style="margin: 0 5px" class="glyphicon glyphicon-time"></span>how do you spend your time?
   </div>
 </footer>

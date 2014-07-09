@@ -11,7 +11,7 @@ var UserSchema = new Schema({
   name: String,
   categories: {
     type: [String],
-    default: ['Sleep', 'Read', 'Work', 'Exercise', 'N/A']
+    default: ['Sleep', 'Read', 'Work', 'Code', 'Exercise', 'Entertainment']
   },
   log: [{type: Schema.Types.ObjectId, ref: 'Log'}]
 });
