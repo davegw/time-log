@@ -1,14 +1,18 @@
 'use strict';
 
 angular.module('timeLogApp')
-  .controller('IndexCtrl', function ($scope, $timeout) {
+  .controller('IndexCtrl', function ($scope, $timeout, $location) {
 
     $scope.clock = moment().format('h:mm:ssa');
     var tick = function() {
       $scope.clock = moment().format('h:mm:ssa');
       $timeout(tick, 1000);
     };
-    $timeout(tick, 1000)
+    $timeout(tick, 1000);
+
+    $scope.buttonAction = function() {
+      $location.path('/DaveGW');
+    }
 
     /************************************************
      ***************** Sample Chart *****************
