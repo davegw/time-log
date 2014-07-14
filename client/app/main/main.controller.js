@@ -14,7 +14,7 @@ angular.module('timeLogApp')
     };
 
     $scope.loadActivity = function() {
-      $http.get('/api/logs/' + $stateParams.log_id)
+      $http.get('/api/logs/' + $stateParams.logId)
         .success(function(data) {
           $scope.log = data;
           console.log($scope.log);

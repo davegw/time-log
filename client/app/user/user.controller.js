@@ -23,7 +23,7 @@ angular.module('timeLogApp')
     };
 
     // Opens the selected log.
-    $scope.viewLog = function(obj, event) {
+    $scope.viewLog = function(obj) {
       $location.path('/' + $scope.user.name + '/log/' + obj._id);
     };
 
