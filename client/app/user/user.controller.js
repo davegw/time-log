@@ -3,12 +3,12 @@
 angular.module('timeLogApp')
   .controller('UserCtrl', function ($scope, $http, Logs, LogService, $stateParams, $location) {
     $scope.user = {};
-    $scope.logs;
+    $scope.logs = {};
 
     // Run everytime main controller is called.
     $scope.runController = function() {
       $scope.loadActivity();
-    }
+    };
 
     $scope.loadActivity = function() {
       $http.get('/api/users/name/' + $stateParams.user)
@@ -25,7 +25,7 @@ angular.module('timeLogApp')
     // Opens the selected log.
     $scope.viewLog = function(obj, event) {
       $location.path('/' + $scope.user.name + '/log/' + obj._id);
-    }
+    };
 
     // Run everytime main controller is called.
     $scope.runController();

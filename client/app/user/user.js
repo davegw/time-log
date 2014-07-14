@@ -7,5 +7,5 @@ angular.module('timeLogApp')
         url: '/:user',
         templateUrl: 'app/user/user.index.html',
         controller: 'UserCtrl'
-      })
+      });
   });
