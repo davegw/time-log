@@ -1,8 +1,8 @@
+'use strict';
+
 angular.module('time-log.factories', [])
 
 .factory('Logs', function ($http) {
-
-  var _logs = {};
 
   var logInstance = {};
 
@@ -59,10 +59,10 @@ angular.module('time-log.factories', [])
 
   // Formats a number into a time.
   logInstance.printTime = function(number) {
-    var ampm = number < 12 ? 'am' : 'pm'
+    var ampm = number < 12 ? 'am' : 'pm';
     var hour = number % 12 === 0 ? 12 : number % 12;
     return (hour + ':00 ' + ampm);
-  }
+  };
 
   return logInstance;
-})
+});

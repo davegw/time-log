@@ -9,7 +9,7 @@ angular.module('timeLogApp')
         controller: 'IndexCtrl'
       })
       .state('mainLog', {
-        url: '/:user/log/:log_id',
+        url: '/:user/log/:logId',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       });

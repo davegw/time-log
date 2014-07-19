@@ -12,7 +12,7 @@ angular.module('timeLogApp')
 
     $scope.buttonAction = function() {
       $location.path('/DaveGW');
-    }
+    };
 
     /************************************************
      ***************** Sample Chart *****************
@@ -40,19 +40,19 @@ angular.module('timeLogApp')
     $scope.chart.data = {
       series: ['Time Log'],
       data: [{
-        x: "Sleep",
+        x: 'Sleep',
         y: [7]
       }, {
-        x: "Exercise",
+        x: 'Exercise',
         y: [1]
       }, {
-        x: "Coding",
+        x: 'Coding',
         y: [8]
       }, {        
-        x: "Reading",
+        x: 'Reading',
         y: [2]
       }, {
-        x: "TV",
+        x: 'TV',
         y: [1]
       }]
     };

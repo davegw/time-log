@@ -11,10 +11,10 @@ angular.module('timeLogApp')
     $scope.runController = function() {
       $scope.loadActivity();
       console.log('params ',$stateParams);
-    }
+    };
 
     $scope.loadActivity = function() {
-      $http.get('/api/logs/' + $stateParams.log_id)
+      $http.get('/api/logs/' + $stateParams.logId)
         .success(function(data) {
           $scope.log = data;
           console.log($scope.log);
@@ -43,20 +43,20 @@ angular.module('timeLogApp')
     };
 
     $scope.createNewEntry = function(date) {
-      console.log(date)
+      console.log(date);
       Logs.createBlankEntry($scope.user._id, date).then(function(response) {
         console.log(response);
-        $location.path('/' + $scope.user.name + '/log/' + response.data._id)
+        $location.path('/' + $scope.user.name + '/log/' + response.data._id);
       });
-    }
+    };
 
     $scope.indexPage = function() {
       $location.path('/' + $scope.user.name);
-    }
+    };
 
     $scope.timeConverter = function(number) {
       return LogService.printTime(number);
-    }
+    };
 
 
     /*****************************************
@@ -88,7 +88,7 @@ angular.module('timeLogApp')
           $scope.chart.data.data = [];
           $scope.chart.data.series = ['Time'];
           for (var activity in response) {
-            if (activity === "N/A") {
+            if (activity === 'N/A') {
               continue;
             }
             $scope.chart.data.data.push({
