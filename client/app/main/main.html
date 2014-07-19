@@ -34,9 +34,9 @@
       </div>
       <div class="row" style="margin-top: 10px">
         <table class="table table-hover">
-          <tr ng-repeat="timeSection in log.entry" ng-class="{selected: timeSection.groupChange === true}">
-            <td class="col-lg-3">{{timeConverter(timeSection.time)}}</td>
-            <td class="col-lg-9 activity-column" ng-click="timeSection.groupChange = !timeSection.groupChange">
+          <tr ng-repeat="timeSection in log.entry" ng-class="{selected: timeSection.groupChange === true}" ng-click="timeSection.groupChange = !timeSection.groupChange">
+            <td class="col-xs-4">{{timeConverter(timeSection.time)}}</td>
+            <td class="col-xs-8 activity-column">
               <div>
                 <div ng-click="showInput = true" class="pull-left">
                   {{timeSection.activity}}
