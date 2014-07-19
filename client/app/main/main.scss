@@ -40,7 +40,6 @@
 
 .date-nav {
   text-align: center;
-  // font-size: 20px;
   padding: 0;
   a:hover {
     cursor: pointer;
@@ -120,6 +119,9 @@ td {
   }
   .chart {
     height: 300px;
+  }
+  .date-nav {
+    font-size: 18px;
   }
 }
 

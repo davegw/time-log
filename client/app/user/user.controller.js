@@ -27,6 +27,13 @@ angular.module('timeLogApp')
       $location.path('/' + $scope.user.name + '/log/' + obj._id);
     };
 
+    $scope.createTodayEntry = function() {
+      var today = new Date((new Date()).setHours(0,0,0,0));
+      Logs.createBlankEntry($scope.user._id, today).then(function(response) {
+        $location.path('/' + $scope.user.name + '/log/' + response.data._id);
+      });
+    };
+
     // Run everytime main controller is called.
     $scope.runController();
 

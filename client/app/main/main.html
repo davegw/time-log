@@ -5,7 +5,7 @@
     <div class="col-xs-3 date-nav">
       <a ng-click="createNewEntry(logDate.prev)" class="nav-link"><span class="glyphicon glyphicon-chevron-left"></span> {{logDate.prev | date:'MMM d'}}</a>
     </div>
-    <div class="col-xs-6 date-nav"><strong>{{log.date | date:'MMMM d, yyyy'}}</strong></div>
+    <div class="col-xs-6 date-nav">{{log.date | date:'MMMM d, yyyy'}}</div>
     <div class="col-xs-3 date-nav">
       <a ng-click="createNewEntry(logDate.next)" class="nav-link">{{logDate.next | date:'MMM d'}} <span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
