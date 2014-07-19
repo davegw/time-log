@@ -13,11 +13,16 @@ var UserSchema = new Schema({
     type: String,
     lowercase: true
   },
+  role: {
+    type: String,
+    default: 'user'
+  },
   hashedPassword: String,
   provider: {
     type: String,
     default: 'Local'
   },
+  salt: String,
   categories: {
     type: [String], // This looks off, check it after testing.
     default: ['Sleep', 'Read', 'Work', 'Code', 'Exercise', 'Entertainment']
@@ -70,8 +75,8 @@ UserSchema
   .virtual('token')
   .get(function() {
     return {
-      '_id': this._id
-      // 'role': this.role
+      '_id': this._id,
+      'role': this.role
     };
   });
 
