@@ -59,6 +59,10 @@ a.nav-link {
   font-style: italic;
 }
 
+.tagline {
+  display: none;
+}
+
 .options-row {
   margin: 20px 0 10px 0;
 }
@@ -107,4 +111,19 @@ td {
 .index-button {
   margin: 5px 10px 30px 10px;
   font-size: 20px;
+}
+
+@media (min-width: 500px) {
+  .tagline {
+    display: inline;
+  }
+  .chart {
+    height: 300px;
+  }
+}
+
+@media (min-width: 650px) {
+  .chart {
+    height: 400px;
+  }
 }
