@@ -11,7 +11,7 @@ angular.module('timeLogApp')
     $timeout(tick, 1000);
 
     $scope.buttonAction = function() {
-      $location.path('/DaveGW');
+      $location.path('/sampleuser');
     };
 
     /************************************************
